@@ -1,22 +1,55 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Person from '../Person/Person'
-import {connect} from 'react-redux'
-let Persons = (props) => {
-    return (<div>
-        {props.persons.map((person) => (<Person name={person.name}
+import { connect } from 'react-redux'
+class Persons extends Component {
+    state={
+        total:0
+    }
+    calculateTotal = () => {
+        let total = 0;
+        this.props.persons.forEach((person) => {
+            total += person.amount;
+        })
+        this.setState({
+            total: total
+        })
+    }
+
+    componentDidMount(){
+        this.calculateTotal();
+    }
+
+    componentDidUpdate(){
+        console.log("persons updated")
+    }
+    render() {
+
+        return (<div>
+            <div className="total">
+                <h2> Total : {this.state.total} </h2>
+                <hr />
+            </div>
+
+            {this.props.persons.map((person) => <Person name={person.name}
                 amount={person.amount}
                 key={person.id}
-                incrementAmount={()=>props.handleIncrementAmount(person.id)}
-                decrementAmount={()=>props.handleDecrementAmount(person.id)}
-            />
-            )
-        )}
-    </div>);
+                incrementAmount={() => {
+                    this.props.handleIncrementAmount(person.id)
+                    this.calculateTotal();
+                }}
+                decrementAmount={() => {
+                    this.props.handleDecrementAmount(person.id)
+                    this.calculateTotal();
+                }}
+            />)}
+        </div>);
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
-        persons: state.persons
+        persons: state.persons,
+        
     }
 }
 
