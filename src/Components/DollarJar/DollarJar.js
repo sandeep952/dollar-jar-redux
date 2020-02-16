@@ -10,6 +10,10 @@ class DollarJar extends Component {
         total: 0,
     }
 
+    componentDidUpdate() {
+        console.log("updated dollar jar");
+    }
+
     // calculateTotal = () => {
     //     let total = 0;
     //     this.state.persons.forEach((person) => {
@@ -43,20 +47,14 @@ class DollarJar extends Component {
 
                     </div>
                     <div className="col-md-6">
-                        <AddPerson/>
-
-
+                        <AddPerson />
                     </div>
                 </div>
                 <div className="total">
                     <h2> Total : {this.state.total} </h2>
                     <hr />
                 </div>
-                <Persons
-                    persons={this.props.persons}
-                    handleIncrementAmount={this.props.handleIncrementAmount}
-                    handleDecrementAmount={this.props.handleDecrementAmount}
-                />
+                <Persons/>
 
             </div>);
     }
@@ -65,8 +63,7 @@ class DollarJar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        charge: state.charge,
-        persons: state.persons
+        charge: state.charge
     }
 }
 
@@ -75,17 +72,7 @@ const mapDispatchToProps = (dispatch) => {
         configureAmount: (event) => dispatch({
             type: 'CONFIGURE_AMOUNT',
             value: event.target.value
-        }),
-
-        handleIncrementAmount: (id) => dispatch({
-            type: 'INCREMENT_AMOUNT',
-            personId: id
-        }),
-
-        handleDecrementAmount: (id) => dispatch({
-            type: 'DECREMENT_AMOUNT',
-            personId: id
-        }),
+        })
     }
 }
 
