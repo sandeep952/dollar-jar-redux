@@ -6,7 +6,7 @@ let Persons = (props) => {
         {props.persons.map((person) => (<Person name={person.name}
                 amount={person.amount}
                 key={person.id}
-                incrementAmount={props.handleIncrementAmount.bind(this,person.id)}
+                incrementAmount={()=>props.handleIncrementAmount(person.id)}
                 decrementAmount={props.handleDecrementAmount.bind(this,person.id)}
             />
             )

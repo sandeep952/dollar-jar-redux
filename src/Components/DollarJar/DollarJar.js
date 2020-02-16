@@ -9,19 +9,10 @@ class DollarJar extends Component {
     state = {
         personsCount: 1,
         total: 0,
-        persons: [
-            {
-                name: "Sandeep",
-                amount: 10,
-                id: 1
-
-            },
-
-        ]
     }
 
     componentDidMount = () => {
-        this.calculateTotal();
+        //  this.calculateTotal();
     }
 
 
@@ -44,36 +35,18 @@ class DollarJar extends Component {
             })
 
         }
-        this.calculateTotal();
+        //        this.calculateTotal();
     }
 
-    calculateTotal = () => {
-        let total = 0;
-        this.state.persons.forEach((person) => {
-            total += person.amount;
-        })
-        this.setState({
-            total: total
-        })
-    }
-
-    handleIncrementAmount = (personId) => {
-        let updatedPersons = [...this.state.persons];
-        let i = 0;
-        for (i = 0; i < updatedPersons.length; i++) {
-            if (updatedPersons[i].id === personId) {
-                break;
-            }
-        }
-        updatedPersons[i].amount += parseInt(this.props.charge);
-        this.setState({
-            persons: updatedPersons
-        })
-
-        this.calculateTotal();
-    }
-
-
+    // calculateTotal = () => {
+    //     let total = 0;
+    //     this.state.persons.forEach((person) => {
+    //         total += person.amount;
+    //     })
+    //     this.setState({
+    //         total: total
+    //     })
+    // }
 
     handleDecrementAmount = (personId) => {
         let updatedPersons = [...this.state.persons];
@@ -87,7 +60,7 @@ class DollarJar extends Component {
         this.setState({
             persons: updatedPersons
         })
-        this.calculateTotal();
+        //    this.calculateTotal();
     }
 
     render() {
@@ -124,8 +97,8 @@ class DollarJar extends Component {
                     <hr />
                 </div>
                 <Persons
-                    persons={this.state.persons}
-                    handleIncrementAmount={this.handleIncrementAmount.bind(this)}
+                    persons={this.props.persons}
+                    handleIncrementAmount={this.props.handleIncrementAmount}
                     handleDecrementAmount={this.handleDecrementAmount.bind(this)}
                 />
 
@@ -135,17 +108,22 @@ class DollarJar extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        charge: state.charge
+        charge: state.charge,
+        persons: state.persons
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        configureAmount: (event) => dispatch(
-            {
-                type: 'CONFIGURE_AMOUNT',
-                value: event.target.value
-            })
+        configureAmount: (event) => dispatch({
+            type: 'CONFIGURE_AMOUNT',
+            value: event.target.value
+        }),
+
+        handleIncrementAmount:(id)=>dispatch({
+            type:'INCREMENT_AMOUNT',
+            personId:id
+        })
     }
 }
 
