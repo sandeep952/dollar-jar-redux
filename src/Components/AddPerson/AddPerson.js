@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 
 class AddPerson extends Component {
 
@@ -10,7 +10,7 @@ class AddPerson extends Component {
             name: ""
         }
     }
-    
+
     handleNameChange(event) {
         let newName = event.target.value;
         this.setState({
@@ -49,7 +49,7 @@ class AddPerson extends Component {
                     <button type="submit" onClick={(event) => {
                         event.preventDefault();
                         this.handleAddButtonClick();
-                    
+
                     }}
 
                         className="btn btn-primary"> Add </button>
@@ -62,4 +62,14 @@ class AddPerson extends Component {
 
 }
 
-export default AddPerson;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPerson: (person_name) => dispatch({
+            type: 'ADD_PERSON',
+            name: person_name
+        })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddPerson);

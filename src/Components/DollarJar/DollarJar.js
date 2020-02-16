@@ -10,17 +10,6 @@ class DollarJar extends Component {
         total: 0,
     }
 
-    componentDidMount = () => {
-        //  this.calculateTotal();
-    }
-
-
-    addPersonHandler = (name) => {
-
-       
-        //        this.calculateTotal();
-    }
-
     // calculateTotal = () => {
     //     let total = 0;
     //     this.state.persons.forEach((person) => {
@@ -54,8 +43,7 @@ class DollarJar extends Component {
 
                     </div>
                     <div className="col-md-6">
-                        <AddPerson
-                            addPerson={this.props.addPersonHandler} />
+                        <AddPerson/>
 
 
                     </div>
@@ -74,6 +62,7 @@ class DollarJar extends Component {
     }
 
 }
+
 const mapStateToProps = (state) => {
     return {
         charge: state.charge,
@@ -88,20 +77,15 @@ const mapDispatchToProps = (dispatch) => {
             value: event.target.value
         }),
 
-        handleIncrementAmount:(id)=>dispatch({
-            type:'INCREMENT_AMOUNT',
-            personId:id
-        }),
-        
-        handleDecrementAmount:(id)=>dispatch({
-            type:'DECREMENT_AMOUNT',
-            personId:id
+        handleIncrementAmount: (id) => dispatch({
+            type: 'INCREMENT_AMOUNT',
+            personId: id
         }),
 
-        addPersonHandler:(person_name)=>dispatch({
-            type:'ADD_PERSON',
-            name:person_name
-        })
+        handleDecrementAmount: (id) => dispatch({
+            type: 'DECREMENT_AMOUNT',
+            personId: id
+        }),
     }
 }
 
