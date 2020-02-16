@@ -48,21 +48,6 @@ class DollarJar extends Component {
     //     })
     // }
 
-    handleDecrementAmount = (personId) => {
-        let updatedPersons = [...this.state.persons];
-        let i = 0;
-        for (i = 0; i < updatedPersons.length; i++) {
-            if (updatedPersons[i].id === personId) {
-                break;
-            }
-        }
-        updatedPersons[i].amount -= parseInt(this.props.charge);
-        this.setState({
-            persons: updatedPersons
-        })
-        //    this.calculateTotal();
-    }
-
     render() {
 
         //let username = this.props.location.username
@@ -99,7 +84,7 @@ class DollarJar extends Component {
                 <Persons
                     persons={this.props.persons}
                     handleIncrementAmount={this.props.handleIncrementAmount}
-                    handleDecrementAmount={this.handleDecrementAmount.bind(this)}
+                    handleDecrementAmount={this.props.handleDecrementAmount}
                 />
 
             </div>);
@@ -122,6 +107,11 @@ const mapDispatchToProps = (dispatch) => {
 
         handleIncrementAmount:(id)=>dispatch({
             type:'INCREMENT_AMOUNT',
+            personId:id
+        }),
+        
+        handleDecrementAmount:(id)=>dispatch({
+            type:'DECREMENT_AMOUNT',
             personId:id
         })
     }

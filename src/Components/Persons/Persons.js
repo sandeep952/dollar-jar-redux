@@ -7,7 +7,7 @@ let Persons = (props) => {
                 amount={person.amount}
                 key={person.id}
                 incrementAmount={()=>props.handleIncrementAmount(person.id)}
-                decrementAmount={props.handleDecrementAmount.bind(this,person.id)}
+                decrementAmount={()=>props.handleDecrementAmount(person.id)}
             />
             )
         )}

@@ -44,6 +44,22 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 persons:updatedPersons                
             }
+        
+            case 'DECREMENT_AMOUNT':
+                
+                {let updatedPersons = [...state.persons];
+                let i = 0;
+                for (i = 0; i < updatedPersons.length; i++) {
+                    if (updatedPersons[i].id === action.personId) {
+                        break;
+                    }
+                }
+                updatedPersons[i].amount -= parseInt(state.charge);
+                return {
+                    ...state,
+                    persons:updatedPersons                
+                }}
+    
 
         default:
             return state
