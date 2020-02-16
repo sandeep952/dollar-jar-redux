@@ -7,7 +7,6 @@ class DollarJar extends Component {
 
 
     state = {
-        personsCount: 1,
         total: 0,
     }
 
@@ -18,23 +17,7 @@ class DollarJar extends Component {
 
     addPersonHandler = (name) => {
 
-        if (name) {
-            let newPersons = [...this.state.persons];
-            let newCount = this.state.personsCount + 1;
-            let newPerson = {
-                name: name,
-                amount: 0,
-                id: newCount
-            }
-
-            newPersons.push(newPerson)
-            this.setState({
-                persons: newPersons,
-                personsCount: newCount,
-
-            })
-
-        }
+       
         //        this.calculateTotal();
     }
 
@@ -72,7 +55,7 @@ class DollarJar extends Component {
                     </div>
                     <div className="col-md-6">
                         <AddPerson
-                            addPerson={this.addPersonHandler} />
+                            addPerson={this.props.addPersonHandler} />
 
 
                     </div>
@@ -113,6 +96,11 @@ const mapDispatchToProps = (dispatch) => {
         handleDecrementAmount:(id)=>dispatch({
             type:'DECREMENT_AMOUNT',
             personId:id
+        }),
+
+        addPersonHandler:(person_name)=>dispatch({
+            type:'ADD_PERSON',
+            name:person_name
         })
     }
 }
