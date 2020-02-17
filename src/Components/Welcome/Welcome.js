@@ -29,7 +29,7 @@ class Welcome extends Component {
                         pathname: "/dollar-jar",
                         
                     }}>
-                        <input type="submit" className="btn btn-primary" value="submit"/> 
+                        <input type="submit" disabled={this.props.username.length===0 ? true :false} className="btn btn-primary" value="submit"/> 
 
                     </Link>
                 </form>
@@ -49,7 +49,7 @@ let mapDispatchToProps = (dispatch) =>{
     return {
         changeUsername:(event) => dispatch({
             type:'CHANGE_USERNAME',
-            username:event.target.value
+            username:event.target.value.trim()
 
         })
     }
