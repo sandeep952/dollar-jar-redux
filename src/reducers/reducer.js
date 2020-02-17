@@ -1,6 +1,7 @@
 const initialState = {
     charge: 100,
     personsCount: 1,
+    username:"",
     persons: [
         {
             name: "Sandeep",
@@ -83,8 +84,15 @@ const reducer = (state = initialState, action) => {
 
                 }
             }
+
             return {
                 ...state
+            }
+
+        case 'CHANGE_USERNAME':
+            return {
+                ...state,
+                username:action.username
             }
         default:
             return state

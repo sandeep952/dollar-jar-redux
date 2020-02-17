@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import './Welcome.css'
+import './Welcome.css';
+import {connect} from 'react-redux'
 class Welcome extends Component {
     constructor() {
         super();
         this.nameRef = React.createRef();
     }
 
-    state = {
-        username: ""
-    }
-    setName = (event) => {
-        this.setState({
-            username: event.target.value
-        })
-    }
 
     componentDidMount = () => {
         this.nameRef.current.focus();
@@ -28,13 +21,13 @@ class Welcome extends Component {
                 <form>
                     <input type="text"
                         placeholder="Enter your name"
-                        onChange={this.setName}
-                        value={this.state.username}
+                        onChange={this.props.changeUsername}
+                        value={this.props.username}
                         ref={this.nameRef} />
 
                     <Link to={{
                         pathname: "/dollar-jar",
-                        username: this.state.username
+                        
                     }}>
                         <input type="submit" className="btn btn-primary" value="submit"/> 
 
@@ -46,4 +39,19 @@ class Welcome extends Component {
 
 }
 
-export default Welcome;
+let mapStateToProps = (state) =>{
+    return {
+        username :state.username
+    }
+}
+
+let mapDispatchToProps = (dispatch) =>{
+    return {
+        changeUsername:(event) => dispatch({
+            type:'CHANGE_USERNAME',
+            username:event.target.value
+
+        })
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Welcome);

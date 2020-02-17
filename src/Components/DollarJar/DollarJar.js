@@ -14,11 +14,11 @@ class DollarJar extends Component {
 
     render() {
 
-        //let username = this.props.location.username
+        let username = this.props.username
         return (
             <div className="container">
                 <div className="text-center">
-                    <h1>Hello {this.props.charge}</h1>
+                    <h1>Hello {username}</h1>
                     <hr />
                 </div>
 
@@ -39,6 +39,10 @@ class DollarJar extends Component {
 
 }
 
+let mapStateToProps = (state)=>{
+    return {
+        username :state.username
+    }
+}
 
-
-export default connect(null, null)(DollarJar);
+export default connect(mapStateToProps, null)(DollarJar);
