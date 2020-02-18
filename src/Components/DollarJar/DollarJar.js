@@ -6,10 +6,16 @@ import { connect } from 'react-redux'
 
 class DollarJar extends Component {
 
+    
 
-    componentDidUpdate() {
-        console.log("updated dollar jar");
+    UNSAFE_componentWillMount(){
+        if(!this.props.username){
+            this.props.history.push('/')
+        }
+       
     }
+
+
 
 
     render() {

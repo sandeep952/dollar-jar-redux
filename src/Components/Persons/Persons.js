@@ -21,9 +21,6 @@ class Persons extends Component {
         this.calculateTotal();
     }
 
-    componentDidUpdate(){
-        console.log("persons updated")
-    }
     render() {
 
         return (<div>
