@@ -1,13 +1,11 @@
 const initialState = {
     charge: 100,
     personsCount: 1,
-    username:"",
     persons: [
         {
             name: "Sandeep",
             amount: 10,
             id: 1
-
         },
 
     ]
@@ -15,17 +13,17 @@ const initialState = {
 
 }
 
-const reducer = (state = initialState, action) => {
+const dollarJarApp = (state = initialState, action) => {
 
     switch (action.type) {
         case "CONFIGURE_AMOUNT":
             let newState = { ...state }
-            let newCharge = action.value.trim()
+            let newCharge = action.amount
             if (newCharge === "") {
                 newState.charge = 0;
             }
             else {
-                newCharge = parseInt(action.value)
+                newCharge = parseInt(action.amount)
                 if (!isNaN(newCharge)) {
                     newState.charge = newCharge
                 }
@@ -89,15 +87,10 @@ const reducer = (state = initialState, action) => {
                 ...state
             }
 
-        case 'CHANGE_USERNAME':
-            return {
-                ...state,
-                username:action.username
-            }
         default:
             return state
     }
 
 }
 
-export default reducer;
+export default dollarJarApp;

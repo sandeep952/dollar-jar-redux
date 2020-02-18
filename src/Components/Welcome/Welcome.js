@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import './Welcome.css';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { changeUsername } from './WelcomeActions'
+
 class Welcome extends Component {
     constructor() {
         super();
@@ -9,7 +11,7 @@ class Welcome extends Component {
     }
 
 
-    componentDidMount = () => {
+    componentDidMount() {
         this.nameRef.current.focus();
     }
 
@@ -27,9 +29,9 @@ class Welcome extends Component {
 
                     <Link to={{
                         pathname: "/dollar-jar",
-                        
+
                     }}>
-                        <input type="submit" disabled={this.props.username.length===0 ? true :false} className="btn btn-primary" value="submit"/> 
+                        <input type="submit" disabled={this.props.username.length === 0 ? true : false} className="btn btn-primary" value="submit" />
 
                     </Link>
                 </form>
@@ -39,19 +41,16 @@ class Welcome extends Component {
 
 }
 
-let mapStateToProps = (state) =>{
+let mapStateToProps = (state) => {
     return {
-        username :state.username
+        username: state.welcomePage.username
     }
 }
 
-let mapDispatchToProps = (dispatch) =>{
-    return {
-        changeUsername:(event) => dispatch({
-            type:'CHANGE_USERNAME',
-            username:event.target.value.trim()
+let mapDispatchToProps = (dispatch) => {
 
-        })
+    return {
+        changeUsername: (event) => dispatch(changeUsername(event.target.value.trim()))
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Welcome);
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

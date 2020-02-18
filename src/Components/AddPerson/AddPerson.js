@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addPerson } from '../../actions/actions';
 
 class AddPerson extends Component {
 
@@ -31,9 +32,8 @@ class AddPerson extends Component {
         this.setState({
             name: ""
         })
-
-
     }
+
 
     render() {
         return (<div className="container text-center">
@@ -65,10 +65,7 @@ class AddPerson extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addPerson: (person_name) => dispatch({
-            type: 'ADD_PERSON',
-            name: person_name
-        })
+        addPerson: (person_name) => dispatch(addPerson(person_name))
     }
 }
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Person from '../Person/Person'
 import { connect } from 'react-redux'
+import { handleDecrementAmount} from '../../actions/actions';
+import { handleIncrementAmount} from '../../actions/actions';
 class Persons extends Component {
     state={
         total:0
@@ -48,22 +50,16 @@ class Persons extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        persons: state.persons,
+        persons: state.dollarJarApp.persons,
         
-    }
+    }   
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleIncrementAmount: (id) => dispatch({
-            type: 'INCREMENT_AMOUNT',
-            personId: id
-        }),
+        handleIncrementAmount: (id) => dispatch(handleIncrementAmount(id)),
 
-        handleDecrementAmount: (id) => dispatch({
-            type: 'DECREMENT_AMOUNT',
-            personId: id
-        }),
+        handleDecrementAmount: (id) => dispatch(handleDecrementAmount(id)),
     }
 }
 

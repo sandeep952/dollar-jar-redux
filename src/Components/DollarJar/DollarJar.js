@@ -41,7 +41,7 @@ class DollarJar extends Component {
 
 let mapStateToProps = (state)=>{
     return {
-        username :state.username
+        username :state.welcomePage.username
     }
 }
 

@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {configureAmount} from '../../actions/actions'
 class ConfigureAmount extends Component {
+
+    
+    changeAmount = (event)=>{
+        let newAmount = event.target.value;
+        this.props.configureAmount(newAmount)
+    }
+
     render() {
 
         return (
@@ -8,7 +16,7 @@ class ConfigureAmount extends Component {
                 <h5>Configure amount :<strong> {this.props.charge} </strong></h5>
                 <input type="text"
                     placeholder="Enter amount"
-                    onChange={this.props.configureAmount} value={this.props.charge} />
+                    onChange={this.changeAmount} value={this.props.charge} />
             </div>
         )
     }
@@ -16,16 +24,13 @@ class ConfigureAmount extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        charge: state.charge
+        charge: state.dollarJarApp.charge
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        configureAmount: (event) => dispatch({
-            type: 'CONFIGURE_AMOUNT',
-            value: event.target.value
-        })
+        configureAmount: (amount) => dispatch(configureAmount(amount))
     }
 }
 
