@@ -1,6 +1,7 @@
+import * as actionTypes from '../../actions/actionTypes'
 export const changeUsername = (username) => {
     return {
-      type: 'CHANGE_USERNAME',
+      type: actionTypes.CHANGE_USERNAME,
       username
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import './Welcome.css';
 import { connect } from 'react-redux'
-import { changeUsername } from './WelcomeActions'
+import { changeUsername } from './welcomeActions'
 
 class Welcome extends Component {
     constructor() {

@@ -1,6 +1,7 @@
+import * as actionTypes from './actionTypes'
 export const handleIncrementAmount = (id) => {
     return {
-        type: 'INCREMENT_AMOUNT',
+        type: actionTypes.INCREMENT_AMOUNT,
         personId: id
     }
 
@@ -9,7 +10,7 @@ export const handleIncrementAmount = (id) => {
 export const handleDecrementAmount = (id) => {
     return {
 
-        type: 'DECREMENT_AMOUNT',
+        type: actionTypes.DECREMENT_AMOUNT,
         personId: id
 
     }
@@ -17,7 +18,7 @@ export const handleDecrementAmount = (id) => {
 
 export const addPerson = (person_name) => {
     return {
-        type: 'ADD_PERSON',
+        type: actionTypes.ADD_PERSON,
         name: person_name
     }
 
@@ -25,7 +26,7 @@ export const addPerson = (person_name) => {
 
 export const configureAmount = (amount)=>{
     return {
-        type: 'CONFIGURE_AMOUNT',
+        type: actionTypes.CONFIGURE_AMOUNT,
         amount: amount
     }
 }
