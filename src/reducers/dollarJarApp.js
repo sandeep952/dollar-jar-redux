@@ -1,3 +1,5 @@
+import * as actionTypes from '../actions/actionTypes'
+
 const initialState = {
     charge: 100,
     personsCount: 1,
@@ -16,7 +18,7 @@ const initialState = {
 const dollarJarApp = (state = initialState, action) => {
 
     switch (action.type) {
-        case "CONFIGURE_AMOUNT":
+        case actionTypes.CONFIGURE_AMOUNT:
             let newState = { ...state }
             let newCharge = action.amount
             if (newCharge === "") {
@@ -31,7 +33,7 @@ const dollarJarApp = (state = initialState, action) => {
             }
             return newState;
 
-        case 'INCREMENT_AMOUNT':
+        case actionTypes.INCREMENT_AMOUNT:
             let updatedPersons = [...state.persons];
             let i = 0;
             for (i = 0; i < updatedPersons.length; i++) {
@@ -45,7 +47,7 @@ const dollarJarApp = (state = initialState, action) => {
                 persons: updatedPersons
             }
 
-        case 'DECREMENT_AMOUNT':
+        case actionTypes.DECREMENT_AMOUNT:
 
             {
                 let updatedPersons = [...state.persons];
@@ -62,7 +64,7 @@ const dollarJarApp = (state = initialState, action) => {
                 }
             }
 
-        case 'ADD_PERSON':
+        case actionTypes.ADD_PERSON:
             let name = action.name
             if (name) {
                 let newPersons = [...state.persons];

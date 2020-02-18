@@ -1,9 +1,11 @@
+import * as actionTypes from '../actions/actionTypes'
+
 let initialState ={
     username:""
 }
 const welcomePage = (state=initialState, action) => {
     switch (action.type) {
-        case 'CHANGE_USERNAME':
+        case actionTypes.CHANGE_USERNAME:
             return {
                 ...state,
                 username: action.username
