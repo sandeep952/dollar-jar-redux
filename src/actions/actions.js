@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-export const handleIncrementAmount = (id) => {
+export const incrementAmount = (id) => {
     return {
         type: actionTypes.INCREMENT_AMOUNT,
         personId: id
@@ -7,7 +7,7 @@ export const handleIncrementAmount = (id) => {
 
 }
 
-export const handleDecrementAmount = (id) => {
+export const decrementAmount = (id) => {
     return {
 
         type: actionTypes.DECREMENT_AMOUNT,
