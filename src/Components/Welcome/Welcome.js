@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import './Welcome.css';
 import { connect } from 'react-redux'
-import { changeUsername } from './welcomeActions'
+import { changeUsername } from '../Welcome/WelcomeActions'
 
 class Welcome extends Component {
     constructor() {
@@ -48,7 +48,7 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-
+    console.log(dispatch)
     return {
         changeUsername: (event) => dispatch(changeUsername(event.target.value.trim()))
     }
